@@ -43,12 +43,15 @@ export function Sidebar({ activeTab, setActiveTab, styles, isDarkTheme, globalFo
       <nav className="flex-1 overflow-y-auto px-4 space-y-1">
         <button
           onClick={() => setActiveTab('dashboard')}
-          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+          className={`relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
             activeTab === 'dashboard' 
-              ? (isDarkTheme ? 'bg-white/20 text-white' : 'bg-indigo-50 text-indigo-700')
-              : (isDarkTheme ? 'text-white/70 hover:bg-white/10 hover:text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900')
+              ? (isDarkTheme ? 'bg-white/10 text-white' : 'bg-indigo-50 text-indigo-700')
+              : (isDarkTheme ? 'text-white/70 hover:bg-white/5 hover:text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900')
           }`}
         >
+          {activeTab === 'dashboard' && (
+            <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 rounded-r-full ${isDarkTheme ? 'bg-indigo-400' : 'bg-indigo-600'}`} />
+          )}
           <LayoutDashboard size={18} />
           Dashboard
         </button>
@@ -61,12 +64,15 @@ export function Sidebar({ activeTab, setActiveTab, styles, isDarkTheme, globalFo
           <button
             key={style.id}
             onClick={() => setActiveTab(style.id)}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+            className={`relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
               activeTab === style.id 
-                ? (isDarkTheme ? 'bg-white/20 text-white' : 'bg-indigo-50 text-indigo-700')
-                : (isDarkTheme ? 'text-white/70 hover:bg-white/10 hover:text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900')
+                ? (isDarkTheme ? 'bg-white/10 text-white' : 'bg-indigo-50 text-indigo-700')
+                : (isDarkTheme ? 'text-white/70 hover:bg-white/5 hover:text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900')
             }`}
           >
+            {activeTab === style.id && (
+              <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 rounded-r-full ${isDarkTheme ? 'bg-indigo-400' : 'bg-indigo-600'}`} />
+            )}
             {icons[style.id] || <Square size={18} />}
             {style.name}
           </button>

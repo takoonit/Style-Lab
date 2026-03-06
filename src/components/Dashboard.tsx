@@ -91,7 +91,15 @@ export function Dashboard({ styles, onSelectStyle, globalStyleId, setGlobalStyle
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               onClick={() => onSelectStyle(style.id)}
-              className="h-full"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectStyle(style.id);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              className="h-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-xl"
             >
               <SpotlightCard className={`group cursor-pointer flex flex-col h-full transition-all duration-300 ${isDarkTheme ? 'bg-white/5 border-white/10 hover:border-white/30' : 'hover:border-slate-300'}`}>
                 <div className="p-4 md:p-6 flex flex-col h-full relative z-10">

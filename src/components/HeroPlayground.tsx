@@ -50,21 +50,40 @@ export function HeroPlayground({ globalStyleId, setGlobalStyleId }: HeroPlaygrou
           {/* Optional background effects for specific styles */}
           {activeStyle.id === 'glassmorphism' && (
             <>
-              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply filter blur-[80px] opacity-30"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-[80px] opacity-30"></div>
+              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply filter blur-[80px] opacity-30 pointer-events-none"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-[80px] opacity-30 pointer-events-none"></div>
+            </>
+          )}
+          {activeStyle.id === 'aurora' && (
+            <>
+              <div className="absolute -top-20 -left-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse pointer-events-none" style={{ animationDuration: '8s' }}></div>
+              <div className="absolute top-20 -right-20 w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse pointer-events-none" style={{ animationDuration: '10s', animationDelay: '2s' }}></div>
+              <div className="absolute -bottom-20 left-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse pointer-events-none" style={{ animationDuration: '12s', animationDelay: '4s' }}></div>
             </>
           )}
 
           <div className="max-w-4xl mx-auto text-center z-10 flex flex-col items-center pb-12">
-            <h1 className={`${activeStyle.components.title} !text-4xl md:!text-6xl !mb-6`}>
-              <BlurText text="Master Modern UI" delay={50} />
-            </h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="!text-4xl md:!text-6xl !mb-6"
+            >
+              <span className={activeStyle.components.title}>
+                Master Modern UI
+              </span>
+            </motion.h1>
             <p className={`${activeStyle.components.text} !text-lg md:!text-xl !mb-10 max-w-2xl opacity-90 leading-relaxed`}>
               <SplitText text="A curated playground of design systems. Select a style below to instantly transform this entire section, then dive deep into the code and principles." delay={20} />
             </p>
-            <button className={`${activeStyle.components.button} !w-auto !px-8 !py-4 !text-lg !rounded-full`}>
+            <motion.button 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className={`${activeStyle.components.button} !w-auto !px-8 !py-4 !text-lg !rounded-full`}
+            >
               Get Started with {activeStyle.name}
-            </button>
+            </motion.button>
           </div>
         </motion.div>
       </AnimatePresence>
